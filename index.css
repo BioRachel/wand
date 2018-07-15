@@ -1,0 +1,13 @@
+.clickpoly {
+  width: 200px;
+  height: 250px;
+  position: absolute;
+  display: inline-block;
+  top: 200px;
+  left: 200px;
+  background-color: red;
+  display: inline-block;
+  box-sizing: border-box;
+  z-index: 2;
+  visibility: hidden;
+}
