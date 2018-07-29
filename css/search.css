@@ -1,0 +1,15 @@
+.search-wrapper {
+  display: flex;
+  border: 2px solid red;
+}
+
+.search-input {
+  flex: 1;
+  border: 2px solid purple;
+}
+
+#id1:focus {
+ border-bottom: 1px solid #e77d00;
+ box-shadow: 0 2px 2px -2px #e77d00;
+ color: #e77d00;
+}

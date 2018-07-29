@@ -1,0 +1,41 @@
+.login-frame {
+  position: fixed;
+  display: flex;
+  top: 0;
+  height: 100%;
+  width: 500px;
+  right: -500px;
+  z-index: 10;
+  background-color: #ff9800;
+  border-left: 2px solid #e1e1e1;
+}
+
+.login-form {
+  flex 1;
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 60px auto;
+  border-radius: 7px;
+  background-color: #fff;
+}
+
+.login-content {
+  padding: 60px 0 40px 0;
+}
+
+.btn-fullwidth {
+  width: 100% !important;
+}
+
+.registered-text {
+  text-align: center;
+}
+
+.signup-content {
+  padding: 60px 0 40px 0;
+}
+
+.cursor {
+  cursor: pointer;
+}

@@ -1,20 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>magic-wand test</title>
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link href="https://fonts.googleapis.com/css?family=Ropa+Sans|Russo+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+
+  <title>Pleasant Data</title>
 </head>
 <body>
-  <div class="main" style="position:absolute; top:0; left:0; width:100%; height:100%"><div class="hover-area"></div>
-      <h1 class="mouseAt"></h1>
-      <canvas id="myCanvas" width="200" height="250" style="top:200px; left:200px; position:absolute"></canvas></div>
+<div class="login-bar-unclick"></div>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-wrapper">
+
+      <div class="logo">
+        <div class="logo-image">
+          <a href="/"><img src="./images/DataLogo.png" alt="logo" /></a>
+        </div>
+      </div>
+
+      <div class="flavour">
+        <div class="centered-text"><a href="/" style="color: #616161;">Projects</a></div>
+      </div>
+
+      <!-- Searchbar -->
+      <div class="middle">
+        <div class="row container" style="margin-top:12px">
+          <div class="container">
+            <div class="col s12">
+              <div class="row">
+                <div class="input-field col s9">
+                  <i class="material-icons prefix">search</i>
+                  <input type="text" id="id1" class="autocomplete" value="Search Projects">
+                </div>
+
+                <div class="input-field col s3">
+                  <select>
+                    <option value="" disabled selected>Category</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-nav-links">
+        <div class="login"><div class="vertical-center">LOG IN</div></div>
+        <div class="signup"><div class="vertical-center">SIGN UP</div></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main-container">
+    <div class="main">
+      <div class="left-panel"></div>
+      <div class="mid-panel">
+        <span class="tile-title">Recommended Projects For You</span>
+        <span class="tile-title">Top Projects</span>
+      </div>
+      <div class="right-panel"></div>
+    </div>
   </div>
+  
+    <!-- SLIDE-IN SIDEBAR FOR LOGIN -->
+  <div class="login-frame">
+    <div class="login-form">
+      <div class="container">
+  
+  
+          <form action="" method="get" class="login-content">
+            <span class="tile-title">Login</span>
+            <div class="input-field col s6">
+              <input placeholder="Username" name="username" type="text" class="validate">
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Password" name="password" type="text" class="validate">
+            </div>
+            <div class="row">
+              <button class="btn waves-effect waves-light orange btn-fullwidth" type="submit" name="login">Log In</button>
+            </div>
+            <p class="registered-text">Not registered? <a id='switch-to-create' class="cursor">Create an account</a></p>
+          </form>
+  
+  
+        <form action="" method="post" class="signup-content" style="display: none;">
+          <span class="tile-title">Sign Up</span>
+          <div class="input-field col s6">
+            <input placeholder="Email" name="email" type="text" class="validate">
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="Username" name="username" type="text" class="validate">
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="Password" name="password" type="text" class="validate">
+          </div>
+          <div class="row">
+            <button class="btn waves-effect waves-light orange btn-fullwidth" type="submit" name="signup">Sign Up!</button>
+          </div>
+          <p class="registered-text">Already registered? <a id='switch-to-update' class="cursor">Log In!</a></p>
+        </form>
+  
+      </div>
+    </div>
+  </div>
+  
+  <!-- FOOTER -->
+  <footer class="page-footer orange darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2014 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/indexJQ.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/magicWand.js"></script>
 
-
-  <script type="text/javascript" src="magicWand.js"></script>
-  <script type="text/javascript" src="index.js"></script>
-</body>
-</html>
+  </body>
+  </html>

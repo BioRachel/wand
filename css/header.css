@@ -1,0 +1,104 @@
+.nav-wrapper {
+  display: flex;
+  height: 100px;
+  box-shadow: 0 0 1px 1px #d1d1d1;
+  z-index: 9;
+}
+
+.logo {
+  display: flex;
+  flex: 1;
+}
+
+.logo-image {
+  height: 60px;
+  margin: auto 0 auto 100px;
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+}
+
+.flavour {
+  display: flex;
+  flex: 2;
+  font-weight: 400;
+  font-size: 1.8rem;
+  font-family: 'Ropa Sans', sans-serif;
+}
+
+.centered-text {
+  margin: auto 20px;
+}
+
+.right-nav-links {
+  flex: 2;
+}
+
+.userbox {
+  display: flex;
+  flex: 1;
+
+}
+
+.select-wrapper input.select-dropdown {
+    border-bottom: none;
+}
+
+.user-dropdown {
+  position: relative;
+  display: block;
+  width: 150px;
+  border: 2px solid purple;
+  margin: auto;
+}
+
+.login {
+  display: inline-block;
+  position: relative;
+  height: 45px;
+  width: 120px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  border: 1px solid #ff9800;
+  border-radius: 10px;
+  margin-right: 10px;
+  color: #ff9800;
+  vertical-align: center;
+  font-size: 1.3rem;
+  text-decoration: none;
+  font-family: 'Russo One', sans-serif;
+  cursor: pointer;
+}
+
+.signup {
+  display: inline-block;
+  position: relative;
+  height: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #ff9800;
+  background-color: #ff9800;
+  color: #FFF;
+  font-size: 1.3rem;
+  text-decoration: none;
+  font-family: 'Russo One', sans-serif;
+  cursor: pointer;
+}
+
+.vertical-center {
+  position: relative;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.middle {
+  flex: 8;
+}

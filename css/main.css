@@ -1,0 +1,104 @@
+.main-container {
+  display: block;
+  position: relative;
+  background-color: #ddd;
+}
+
+.main {
+  display: flex;
+  top: 50px;
+  padding: 50px 0;
+}
+
+.left-panel {
+  flex: 2;
+}
+
+.mid-panel {
+  flex: 6;
+}
+
+.project-tile {
+  position: relative;
+  display: flex;
+  width: 90%;
+  height: 190px;
+  margin: 20px auto;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 20px 20px;
+  background-color: #fff;
+  border: 1px solid #fff;
+
+}
+
+.project-tile:hover {
+  border: 1px solid #ff9800;
+}
+
+.project-image {
+  flex: 1;
+  display: flex;
+}
+
+.project-tile-content {
+  flex: 3;
+  color: #000;
+  padding: 0 15px;
+  overflow: hidden;
+}
+
+.right-panel {
+  flex: 2;
+}
+
+.tile-image {
+  border-radius:7px;
+  max-height: 150px;
+  margin: auto;
+}
+
+.tile-headingline {
+  display: block;
+}
+
+.tile-title {
+  display: inline-block;
+  font-family: 'Ropa Sans', sans-serif;
+  font-size: 2rem;
+  color: #292929;
+  padding-right: 10px;
+}
+
+.tile-author {
+  display: inline-block;
+  font-family: 'Ropa Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #292929;
+}
+
+.tile-date {
+  display: inline-block;
+  padding-top: 12px;
+  font-family: 'Ropa Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #616161;
+  float: right;
+}
+
+.login-bar-unclick {
+  position: fixed;
+  display: none;
+  height: 100%;
+  left: 0;
+  right: 500px;
+  z-index: 11;
+}
+
+.triggerbox {
+  display: block;
+}
+
+.hidden{
+  display: none;
+}

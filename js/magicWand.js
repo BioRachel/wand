@@ -4,24 +4,28 @@ class MagicWand {
     this.color = color;
     this.ps = ps;
     this.pixels = [this.origin];
+    this.startPixelRef = 0;
+    this.countyCount = 0;
+    this.banishedPixels = [];
     this.boundaryWalkPixels = [];
+    this.leftBoundaryPixel;
     this.polygonPixels = [];
     this.neighbour_pixels = [
       {'x': -ps, 'y': 0}, 
       {'x': -ps, 'y': ps}, 
       {'x': 0, 'y': ps},
-      {'x': ps, 'y': 0},
       {'x': ps, 'y': ps},
-      {'x': -ps, 'y': -ps},
+      {'x': ps, 'y': 0},
+      {'x': ps, 'y': -ps},
       {'x': 0, 'y': -ps},
-      {'x': ps, 'y': -ps}
+      {'x': -ps, 'y': -ps}
     ];
   };
 
   // searches the master list of pixels for a pixel
-  findPixel(pixel) {
-    for (var i=0; i<this.pixels.length; i++) {
-      if(pixel.x == this.pixels[i].x && pixel.y == this.pixels[i].y) {
+  findPixel(pixel, list) {
+    for (var i=0; i<list.length; i++) {
+      if(pixel.x == list[i].x && pixel.y == list[i].y) {
         return true;
       }
     }
@@ -35,7 +39,7 @@ class MagicWand {
         rgba[1] == color[1] && 
         rgba[2] == color[2] && 
         rgba[3] == color[3]) {
-          return true;
+          return true;   
     };
     return false;
   };
@@ -53,8 +57,8 @@ class MagicWand {
 
   getMiddlePixel(polyList) {
     // define middle point
-    var maxXY = {"x": clickPosition.x, "y": clickPosition.y};
-    var minXY = {"x": clickPosition.x, "y": clickPosition.y}; // max-min.x, max-min.y
+    var maxXY = {"x": this.origin.x, "y": this.origin.y};
+    var minXY = {"x": this.origin.x, "y": this.origin.y}; // max-min.x, max-min.y
     for (var i=0; i<polyList.length; i++) {
       if (polyList[i].x > maxXY.x) {
         maxXY.x = polyList[i].x;
@@ -80,19 +84,114 @@ class MagicWand {
   };
 
   
-  boundaryWalk(polyList) {
-    this.boundaryWalkPixels.push(polyList[0]);
-    polyList.splice(0, 1);
-
-    for (var j=0; j<this.neighbour_pixels.length; j++) {
-      if (this.boundaryWalkPixels[-1]) {
-        return;
-      }
-    }
-
-    return polyList;
-    
+  getLeftBoundary() {
+    var startPoint = this.origin;
+    // 1. From origin move left until the next square to the left is a different color
+    var leftCounter = 1
+    var leftPixel = { "x": this.origin.x - leftCounter, "y": this.origin.y }
+    while (this.validateColor(leftPixel, this.color)) {
+      leftCounter++;
+      leftPixel = { "x": this.origin.x - leftCounter, "y": this.origin.y }
+    };
+    this.leftBoundaryPixel = { "x": this.origin.x - (leftCounter -1 ), "y": this.origin.y }
+    return this.leftBoundaryPixel;
   };
+  
+  boundaryWalk(currentPixel) { 
+    if (this.startPixelRef !== 0) {
+      for (var i=this.startPixelRef; i<this.neighbour_pixels.length; i++) {
+        // define the pixel to validate
+        let nextPixel = { "x": currentPixel.x + this.neighbour_pixels[i].x, "y": currentPixel.y + this.neighbour_pixels[i].y };
+        if(this.countyCount > 1) {
+          if (nextPixel.x == this.leftBoundaryPixel.x && nextPixel.y == this.leftBoundaryPixel.y) {
+            console.log('returning');
+            return this.polygonPixels;
+          };
+        };
+        if (this.findPixel(nextPixel, this.banishedPixels) !== true) {
+          if (this.validateColor(nextPixel, this.color)) {
+            // this.startPixelRef = this pixel location
+            if (i<4) {
+              this.startPixelRef = i+4;
+            } else {
+              this.startPixelRef = i-4;
+            }
+            currentPixel = nextPixel;
+            this.banishedPixels.push(nextPixel);
+            this.polygonPixels.push(nextPixel);
+            return this.boundaryWalk(currentPixel);
+          };
+        };
+      };
+
+      for (var i=0; i<this.startPixelRef; i++) {
+        // define the pixel to validate
+        let nextPixel = { "x": currentPixel.x + this.neighbour_pixels[i].x, "y": currentPixel.y + this.neighbour_pixels[i].y };
+        if(this.countyCount > 1) {
+          if (nextPixel.x == this.leftBoundaryPixel.x && nextPixel.y == this.leftBoundaryPixel.y) {
+            console.log('returning');
+            return this.polygonPixels;
+          };
+          this.countyCount++;
+        };
+        if (this.findPixel(nextPixel, this.banishedPixels) !== true) {
+          if (this.validateColor(nextPixel, this.color)) {
+            // this.startPixelRef = this pixel location
+            if (i<4) {
+              this.startPixelRef = i+4;
+            } else {
+              this.startPixelRef = i-4;
+            }
+            currentPixel = nextPixel;
+            this.banishedPixels.push(nextPixel);
+            this.polygonPixels.push(nextPixel);
+            this.countyCount++;
+            return this.boundaryWalk(currentPixel);
+
+          };
+        };
+      };
+    
+    } else {
+      
+      for (var i=0; i<this.neighbour_pixels.length; i++) {
+        // define the pixel to validate
+        let nextPixel = { "x": currentPixel.x + this.neighbour_pixels[i].x, "y": currentPixel.y + this.neighbour_pixels[i].y };
+        if(this.countyCount > 1) {
+          if (nextPixel.x == this.leftBoundaryPixel.x && nextPixel.y == this.leftBoundaryPixel.y) {
+            console.log('returning');
+            return this.polygonPixels;
+          };
+        };
+        if (this.findPixel(nextPixel, this.banishedPixels) !== true) {
+          if (this.validateColor(nextPixel, this.color)) {
+            // this.startPixelRef = this pixel location
+            if (i<4) {
+              this.startPixelRef = i+4;
+            } else {
+              this.startPixelRef = i-4;
+            };
+
+            currentPixel = nextPixel;
+            this.banishedPixels.push(currentPixel);
+            this.polygonPixels.push(currentPixel);
+            this.countyCount++;
+            return this.boundaryWalk(currentPixel);
+          };
+        };
+      };
+    };
+  };
+
+
+    // 2. Find the next pixel along
+    // (sweep the surrounding pixels in an anti-clockwise    direction starting with the location of the previous pixel). First pixel starts just to the left.
+    // 3. if this current pixel has 3, 2, 1 or 0 (can experiment) blank pixels around it, don't include it in the list as its not a good polygon point, else append it to the polygonList
+    // 4. always remove this pixel from the starting list
+    // 5. go to the selected next pixel and repeat 
+
+
+    
 
   radianSweep(polyList, middlePixel) {
     var firstQuadrant = [];
