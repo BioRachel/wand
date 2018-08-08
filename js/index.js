@@ -15,6 +15,7 @@ const contentArea = document.querySelector('.create-content');
 
 var activeFunctions = [];
 
+
 // Initializing Objects
 var sidebar = new Sidebar();
 var widgetMenu = new WidgetMenu();
@@ -37,21 +38,26 @@ img2.onload = function() {
 }
 img2.src = canvas2.img.src;
 
-
-
-
-
-
-
-
-
+// variables
+var textBoxCount = 0;
+var currentTextBox;
 
 // Event listeners -----------
 // content-area
-contentArea.addEventListener('click', function() {
+contentArea.addEventListener('mousedown', contentClick, true);
+contentArea.addEventListener('mouseup', function() {
+  activeFunctions = [];
+  widgetMenu.resetColor();
+  contentArea.removeEventListener('mousemove', createMouseMove, true);
+})
+
+function contentClick(e) {
   switch(activeFunctions[0]) {
     case 'textBox':
-      alert('textBox tool');
+      window['textBox-' + textBoxCount] = new TextBox(e, textBoxCount);
+      currentTextBox = window['textBox-' + textBoxCount];
+      textBoxCount++;
+      contentArea.addEventListener('mousemove', createMouseMove, true);
       break;
     
     case 'triggerBox':
@@ -65,8 +71,12 @@ contentArea.addEventListener('click', function() {
     default:
       break;
   };
-});
+};
 
+function createMouseMove(e) {
+  currentTextBox.element.style.width = e.offsetX - currentTextBox.startPosition.x;
+  currentTextBox.element.style.height = e.offsetY - currentTextBox.startPosition.y;
+}
 
 // widgets
 const widgets = [textBoxButton, triggerBox, magicWand];
@@ -81,12 +91,9 @@ function addListeners(widget) {
   });
   widget.addEventListener('click', function(e) {
     widgetMenu.selected(e);
+    widgetMenu.resetColor();
   });
 };
-
-// widgets
-
-
 
 // sidebar
 addSectionButton.addEventListener('click', function() {
@@ -99,15 +106,15 @@ addSectionButton.addEventListener('click', function() {
 
 
 // magicWandfunction
-function canvasClick(e) {
-  clickPosition = {"x": e.offsetX, "y": e.offsetY}
-  var pixelData = window.ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
-  var rgba = [pixelData[0], pixelData[1], pixelData[2], pixelData[3]];
+// function canvasClick(e) {
+//   clickPosition = {"x": e.offsetX, "y": e.offsetY}
+//   var pixelData = window.ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
+//   var rgba = [pixelData[0], pixelData[1], pixelData[2], pixelData[3]];
   
-  wand = new MagicWand(clickPosition, rgba, 1);
-  const polyList = wand.search('bloom');
-  const middlePixel = wand.getMiddlePixel(polyList);
-  const orderedList = wand.radianSweep(polyList, middlePixel);
-  const percentageList = wand.convertToPercent(orderedList[0], 200, 250);
-  wand.createDiv('myDiv', percentageList);
-};
+//   wand = new MagicWand(clickPosition, rgba, 1);
+//   const polyList = wand.search('bloom');
+//   const middlePixel = wand.getMiddlePixel(polyList);
+//   const orderedList = wand.radianSweep(polyList, middlePixel);
+//   const percentageList = wand.convertToPercent(orderedList[0], 200, 250);
+//   wand.createDiv('myDiv', percentageList);
+// };

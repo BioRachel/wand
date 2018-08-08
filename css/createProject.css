@@ -125,3 +125,28 @@
 .invisible {
   display: none;
 }
+
+.drawing-box {
+  position: absolute;
+  display: inline-block;
+  border: 2px dashed #000;
+  width: 0px;
+  height: 0px;
+}
+
+.textbox {
+  position: absolute;
+  display: inline-block;
+  border: 2px solid lightgrey;
+  word-wrap: normal;
+  overflow: contain;
+}
+
+.marker-box {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border: 1px solid black;
+  z-index: 99;
+}

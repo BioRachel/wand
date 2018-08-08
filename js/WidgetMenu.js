@@ -20,7 +20,9 @@ class WidgetMenu {
     } else {
       activeFunctions.push(functionName);
     };
-
+  };
+  
+  resetColor() {
     widgets.forEach(function(widget) {
       widget.classList.remove('red');
       widget.classList.add('orange');
