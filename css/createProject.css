@@ -126,27 +126,74 @@
   display: none;
 }
 
-.drawing-box {
-  position: absolute;
-  display: inline-block;
-  border: 2px dashed #000;
-  width: 0px;
-  height: 0px;
-}
-
 .textbox {
   position: absolute;
   display: inline-block;
-  border: 2px solid lightgrey;
-  word-wrap: normal;
-  overflow: contain;
+  border: 2px dashed #000;
+  width: 100%;
+  height: 100%;
 }
 
 .marker-box {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 6px;
   height: 6px;
   border: 1px solid black;
   z-index: 99;
 }
+
+.test {
+  display: inline-block;
+  position: absolute;
+  border: 2px solid red;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+}
+
+.text-container {
+  position: absolute;
+  display: inline-block;
+}
+
+.top-middle {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.middle-right {
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.bottom-middle {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.middle-left {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+

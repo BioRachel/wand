@@ -74,8 +74,8 @@ function contentClick(e) {
 };
 
 function createMouseMove(e) {
-  currentTextBox.element.style.width = e.offsetX - currentTextBox.startPosition.x;
-  currentTextBox.element.style.height = e.offsetY - currentTextBox.startPosition.y;
+  currentTextBox.div.style.width = e.offsetX - currentTextBox.startPosition.x;
+  currentTextBox.div.style.height = e.offsetY - currentTextBox.startPosition.y;
 }
 
 // widgets
